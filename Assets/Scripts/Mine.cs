@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +15,7 @@ public class Mine : MonoBehaviour
         for (int i = 0; i < _count; i++)
         {
             var oreColoumn = Instantiate(_oreColoumnPrafab, transform);
+            oreColoumn.name = "OC " + i;
             oreColoumn.transform.position = new Vector3(0, 0.5f, -i);
             _oreColoumns.Add(oreColoumn.GetComponent<OreColoumn>());
             _oreColoumns[i].Destroyed += OnOreColoumnDestroyed;

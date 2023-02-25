@@ -19,6 +19,7 @@ public class OreColoumn : MonoBehaviour
         for (int i = 0; i < _count; i++)
         {
             var ore = Instantiate(_orePrafab, transform);
+            ore.name = transform.name + "| Ore " + i;
             ore.transform.position = new Vector3(i, 0.5f, transform.position.z);
             _ores.Add(ore.GetComponent<Ore>());
 

@@ -6,11 +6,24 @@ public class StateMachine : MonoBehaviour
 {
     [SerializeField] private State _firstState;
     [SerializeField] private State _currentState;
+    [SerializeField] private Miner _miner;
+    [SerializeField] private Ore _target;
 
-    private Ore _target;
+    private bool _needMerge;
 
     public State Current => _currentState;
     public Ore Target => _target;
+    public bool NeedMerge => _needMerge;
+
+    private void OnEnable()
+    {
+        _miner.Merge += OnMerge;
+    }
+
+    private void OnDisable()
+    {
+        _miner.Merge -= OnMerge;
+    }
 
     private void Start()
     {
@@ -33,6 +46,11 @@ public class StateMachine : MonoBehaviour
     public void SetTarget(Ore target)
     {
         _target = target;
+    }
+
+    public void MergeTransitDone()
+    {
+        _needMerge = false;
     }
 
     private void Reset(State startState)
@@ -58,5 +76,10 @@ public class StateMachine : MonoBehaviour
         {
             _currentState.Enter(_target);
         }
+    }
+
+    private void OnMerge()
+    {
+        _needMerge = true;
     }
 }

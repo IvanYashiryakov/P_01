@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ReadyToDrillTransition : Transition
 {
     private void Update()
     {
-        if (transform.position.x == Target.transform.position.x)
+        if (transform.position.x == Target.transform.position.x && transform.position.z == Target.transform.position.z + 2f)
         {
             NeedTransit = true;
         }

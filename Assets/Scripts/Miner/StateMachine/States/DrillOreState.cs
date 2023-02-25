@@ -1,43 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Miner))]
 public class DrillOreState : State
 {
     [SerializeField] private float _speed = 5f;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private ParticleSystem _destroyEffect;
 
-    private Coroutine _coroutine;
+    private Miner _miner;
+    private float _effectTime = 0.2f;
+    private float _elapsedTime = 0f;
 
     private void OnEnable()
     {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
+        _rigidbody.isKinematic = false;
+    }
 
-        _coroutine = StartCoroutine(Drill());
+    private void OnDisable()
+    {
+        _rigidbody.isKinematic = true;
+    }
+
+    private void Start()
+    {
+        _miner = GetComponent<Miner>();
     }
 
     private void Update()
     {
-        
+        _rigidbody.velocity = -transform.forward * _speed;
+
+        _elapsedTime += Time.deltaTime;
+        if (_elapsedTime > _effectTime)
+        {
+            _destroyEffect.Play();
+            _elapsedTime = 0f;
+        }
     }
 
-    private IEnumerator Drill()
+    private void OnCollisionStay(Collision collision)
     {
-        Vector3 newPosition = new Vector3(Target.transform.position.x, transform.position.y, Target.transform.position.z);
-        Vector3 endPosition = new Vector3(Target.transform.position.x, transform.position.y, Target.transform.position.z + 2f);
-
-        while (transform.position.z != Target.transform.position.z)
+        if (collision.gameObject.TryGetComponent<OrePiece>(out OrePiece orePiece))
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, _speed * Time.deltaTime);
-            yield return null;
+            orePiece.ApplyDamage(_miner.Damage);
         }
-
-        while (transform.position.z != endPosition.z)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, endPosition, _speed * 2 * Time.deltaTime);
-            yield return null;
-        }
-
-        Destroy(Target.gameObject);
     }
 }

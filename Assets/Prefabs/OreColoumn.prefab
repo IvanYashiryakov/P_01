@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5661504908455af45988766e25fac33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _orePrafab: {fileID: 2792777153418364132, guid: e93dced14aeba4047b9769fff4aa250f, type: 3}
+  _orePrafab: {fileID: 9151759361246214525, guid: 4c764df9d97354e49ba762a247deac6f, type: 3}
   _count: 9
