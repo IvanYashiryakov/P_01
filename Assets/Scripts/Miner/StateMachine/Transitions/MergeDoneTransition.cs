@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Miner))]
 public class MergeDoneTransition : Transition
 {
+    [SerializeField] private StateMachine _stateMachine;
+
     private Miner _miner;
     private readonly float _targetDistance = 0.1f;
 
@@ -28,6 +30,8 @@ public class MergeDoneTransition : Transition
             {
                 _miner.SetNextLevelMinerData();
             }
+
+            _stateMachine.MergeTransitDone();
             NeedTransit = true;
         }
     }

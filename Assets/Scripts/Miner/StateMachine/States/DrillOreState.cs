@@ -10,6 +10,7 @@ public class DrillOreState : State
     private Miner _miner;
     private float _effectTime = 0.2f;
     private float _elapsedTime = 0f;
+    private bool _onCollision = false;
 
     private void OnEnable()
     {
@@ -31,7 +32,7 @@ public class DrillOreState : State
         _rigidbody.velocity = -transform.forward * _speed;
 
         _elapsedTime += Time.deltaTime;
-        if (_elapsedTime > _effectTime)
+        if (_onCollision && _elapsedTime > _effectTime)
         {
             _destroyEffect.Play();
             _elapsedTime = 0f;
@@ -43,6 +44,15 @@ public class DrillOreState : State
         if (collision.gameObject.TryGetComponent<OrePiece>(out OrePiece orePiece))
         {
             orePiece.ApplyDamage(_miner.Damage);
+            _onCollision = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<OrePiece>(out OrePiece orePiece))
+        {
+            _onCollision = false;
         }
     }
 }

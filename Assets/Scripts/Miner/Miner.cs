@@ -35,6 +35,7 @@ public class Miner : MonoBehaviour
     {
         _minerData = _nextLevelMinerData;
         _meshRenderer.material = _minerData.Material;
+        _nextLevelMinerData = null;
     }
 
     public void StartMerge(Miner minerToMergeWith, MinerData minerData = null)

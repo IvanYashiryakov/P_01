@@ -8,7 +8,7 @@ public class ToMergeTransition : Transition
 
     private void Update()
     {
-        if (_stateMachine.NeedMerge == true)
+        if (NeedTransit == false && _stateMachine.NeedMerge == true)
         {
             NeedTransit = true;
 
@@ -17,7 +17,7 @@ public class ToMergeTransition : Transition
                 Target.SetBusy(false);
             }
 
-            _stateMachine.MergeTransitDone();
+            //_stateMachine.MergeTransitDone();
         }
     }
 }

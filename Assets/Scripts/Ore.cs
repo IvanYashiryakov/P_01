@@ -6,6 +6,7 @@ public class Ore : MonoBehaviour
 {
     [SerializeField] private float _health;
     [SerializeField] private List<OrePiece> _orePieces;
+    [SerializeField] private int _goldAmount;
 
     private bool _isFree;
 
@@ -17,10 +18,11 @@ public class Ore : MonoBehaviour
     {
         _isFree = true;
         float orePieceHealth = _health / _orePieces.Count;
+        int orePieceGold = _goldAmount / _orePieces.Count;
 
         foreach (var piece in _orePieces)
         {
-            piece.Init(orePieceHealth);
+            piece.Init(this, orePieceHealth, orePieceGold);
             piece.Destroyed += OnOrePieceDestroyed;
         }
     }

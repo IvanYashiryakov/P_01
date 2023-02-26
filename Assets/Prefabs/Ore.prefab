@@ -572,6 +572,7 @@ MonoBehaviour:
   - {fileID: 8703978900794165675}
   - {fileID: 4389437453864598408}
   - {fileID: 357727359821639559}
+  _goldAmount: 40
 --- !u!23 &9151759361246214527
 MeshRenderer:
   m_ObjectHideFlags: 0
