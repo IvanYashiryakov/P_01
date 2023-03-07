@@ -361,7 +361,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 32.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.1
+  m_fontSize: 31.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1016,7 +1016,6 @@ GameObject:
   - component: {fileID: 816062609}
   - component: {fileID: 816062608}
   - component: {fileID: 816062607}
-  - component: {fileID: 816062606}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1024,19 +1023,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &816062606
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 816062605}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &816062607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1328,7 +1314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 2, y: 41.94, z: -22.27}
+  m_LocalPosition: {x: 3.44, y: 13.43, z: -9.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1347,7 +1333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7daafc16e14c1a346959cec0a6127782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fps: 40
+  _fps: 300
 --- !u!1 &1824762735
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ public class Game : MonoBehaviour
 
         for (int i = 0; i < maxLevel - 1; i++)
         {
-            var miners = _miners.Where(miner => miner.Level == i).ToList();
+            var miners = _miners.Where(miner => miner.Level == i && miner.MinerToMergeWith == null).ToList();
 
             if (miners.Count > 1)
             {
@@ -75,7 +75,7 @@ public class Game : MonoBehaviour
 
         for (int i = 0; i < maxLevel - 1; i++)
         {
-            var miners = _miners.Where(miner => miner.Level == i).ToList();
+            var miners = _miners.Where(miner => miner.Level == i && miner.MinerToMergeWith == null).ToList();
 
             if (miners.Count > 1)
             {

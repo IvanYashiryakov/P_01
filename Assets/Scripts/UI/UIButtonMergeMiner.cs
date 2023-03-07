@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMergeMiner : MonoBehaviour
+public class UIButtonMergeMiner : MonoBehaviour
 {
     [SerializeField] private int _price = 200;
     [SerializeField] private Button _button;
@@ -29,7 +29,7 @@ public class UIMergeMiner : MonoBehaviour
     private void OnButtonClick()
     {
         Score.Instance.RemoveGold(_price);
-        _price = (int)(_price * 1.5f);
+        _price = (int)(_price * 1.2f);
         _text.text = _buttonText + "\n" + _price;
     }
 

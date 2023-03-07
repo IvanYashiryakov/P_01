@@ -24,7 +24,7 @@ public class UIButton : MonoBehaviour
     private void OnButtonClick()
     {
         Score.Instance.RemoveGold(_price);
-        _price = (int)(_price * 1.5f);
+        _price = (int)(_price * 1.2f);
         _text.text = _buttonText + "\n" + _price;
     }
 
