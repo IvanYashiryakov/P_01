@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdf43b5392d9af4ab7e2c682d716ace, type: 3}
   m_Name: Miner00
   m_EditorClassIdentifier: 
+  Level: 0
   Material: {fileID: 2100000, guid: 34d5cce247b031b4c846907d22fa3074, type: 2}
   Damage: 1
+  FuelUsage: 0.2

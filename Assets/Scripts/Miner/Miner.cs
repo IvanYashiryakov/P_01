@@ -13,6 +13,7 @@ public class Miner : MonoBehaviour
     public Mine Mine => _mine;
     public float Damage => _minerData.Damage;
     public int Level => _minerData.Level;
+    public float FuelUsage => _minerData.FuelUsage;
     public MinerData NextLevelMinerData => _nextLevelMinerData;
     public Miner MinerToMergeWith => _minerToMergeWith;
 

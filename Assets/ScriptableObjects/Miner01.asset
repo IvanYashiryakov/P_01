@@ -15,3 +15,4 @@ MonoBehaviour:
   Level: 1
   Material: {fileID: 2100000, guid: 4be43b708e603a14b81287223f1edcc9, type: 2}
   Damage: 6
+  FuelUsage: 0.4

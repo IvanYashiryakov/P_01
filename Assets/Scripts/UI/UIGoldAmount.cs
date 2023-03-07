@@ -9,12 +9,12 @@ public class UIGoldAmount : MonoBehaviour
 
     private void OnEnable()
     {
-        Score.Instance.GoldAmountChanged += OnGoldAmountChanged;
+        Scores.Instance.GoldAmountChanged += OnGoldAmountChanged;
     }
 
     private void OnDisable()
     {
-        Score.Instance.GoldAmountChanged -= OnGoldAmountChanged;
+        Scores.Instance.GoldAmountChanged -= OnGoldAmountChanged;
     }
 
     private void OnGoldAmountChanged(int value)

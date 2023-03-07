@@ -12,7 +12,7 @@ public class OrePiece : MonoBehaviour
     private void OnDestroy()
     {
         Destroyed?.Invoke(this);
-        Score.Instance.AddGold(_goldAmount);
+        Scores.Instance.AddGold(_goldAmount);
     }
 
     public void Init(Ore parent, float health, int gold)

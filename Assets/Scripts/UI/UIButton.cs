@@ -11,19 +11,19 @@ public class UIButton : MonoBehaviour
 
     private void OnEnable()
     {
-        Score.Instance.GoldAmountChanged += OnGoldAmountChanged;
+        Scores.Instance.GoldAmountChanged += OnGoldAmountChanged;
         _button.onClick.AddListener(OnButtonClick);
     }
 
     private void OnDisable()
     {
-        Score.Instance.GoldAmountChanged -= OnGoldAmountChanged;
+        Scores.Instance.GoldAmountChanged -= OnGoldAmountChanged;
         _button.onClick.RemoveListener(OnButtonClick);
     }
 
     private void OnButtonClick()
     {
-        Score.Instance.RemoveGold(_price);
+        Scores.Instance.RemoveGold(_price);
         _price = (int)(_price * 1.2f);
         _text.text = _buttonText + "\n" + _price;
     }

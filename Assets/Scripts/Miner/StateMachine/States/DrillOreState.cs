@@ -43,8 +43,10 @@ public class DrillOreState : State
     {
         if (collision.gameObject.TryGetComponent<OrePiece>(out OrePiece orePiece))
         {
-            orePiece.ApplyDamage(_miner.Damage);
             _onCollision = true;
+
+            if (Scores.Instance.TryRemoveFuel(_miner.FuelUsage) == true)
+                orePiece.ApplyDamage(_miner.Damage);
         }
     }
 
