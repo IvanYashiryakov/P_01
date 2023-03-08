@@ -17,8 +17,9 @@ public class Miner : MonoBehaviour
     public MinerData NextLevelMinerData => _nextLevelMinerData;
     public Miner MinerToMergeWith => _minerToMergeWith;
 
-    [HideInInspector] public UnityAction Merge;
+    [HideInInspector] public UnityAction MergeStarted;
     [HideInInspector] public UnityAction<Miner> Destroyed;
+    [HideInInspector] public UnityAction MergeDone;
 
     private void OnDestroy()
     {
@@ -37,12 +38,13 @@ public class Miner : MonoBehaviour
         _minerData = _nextLevelMinerData;
         _meshRenderer.material = _minerData.Material;
         _nextLevelMinerData = null;
+        MergeDone?.Invoke();
     }
 
     public void StartMerge(Miner minerToMergeWith, MinerData minerData = null)
     {
         _nextLevelMinerData = minerData;
         _minerToMergeWith = minerToMergeWith;
-        Merge?.Invoke();
+        MergeStarted?.Invoke();
     }
 }

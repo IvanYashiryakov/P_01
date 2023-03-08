@@ -4,7 +4,8 @@ using UnityEngine;
 public class Mine : MonoBehaviour
 {
     [SerializeField] private GameObject _oreColoumnPrafab;
-    [SerializeField] private int _count;
+    [SerializeField] private int _width;
+    [SerializeField] private int _height;
 
     private List<OreColoumn> _oreColoumns;
 
@@ -12,13 +13,14 @@ public class Mine : MonoBehaviour
     {
         _oreColoumns = new List<OreColoumn>();
 
-        for (int i = 0; i < _count; i++)
+        for (int i = 0; i < _width; i++)
         {
             var oreColoumn = Instantiate(_oreColoumnPrafab, transform);
             oreColoumn.name = "OC " + i;
             oreColoumn.transform.position = new Vector3(0, 0.5f, -i);
             _oreColoumns.Add(oreColoumn.GetComponent<OreColoumn>());
             _oreColoumns[i].Destroyed += OnOreColoumnDestroyed;
+            _oreColoumns[i].Init(_height);
         }
     }
 

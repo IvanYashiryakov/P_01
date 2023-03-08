@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class OreColoumn : MonoBehaviour
 {
     [SerializeField] private GameObject _orePrafab;
-    [SerializeField] private int _count;
-
+    
+    private int _count;
     private List<Ore> _ores;
 
     [HideInInspector] public UnityAction<OreColoumn> Destroyed;
@@ -30,6 +30,11 @@ public class OreColoumn : MonoBehaviour
     private void OnDestroy()
     {
         Destroyed?.Invoke(this);
+    }
+
+    public void Init(int count)
+    {
+        _count = count;
     }
 
     public Ore TryGetFreeOre()

@@ -17,12 +17,12 @@ public class StateMachine : MonoBehaviour
 
     private void OnEnable()
     {
-        _miner.Merge += OnMerge;
+        _miner.MergeStarted += OnMerge;
     }
 
     private void OnDisable()
     {
-        _miner.Merge -= OnMerge;
+        _miner.MergeStarted -= OnMerge;
     }
 
     private void Start()

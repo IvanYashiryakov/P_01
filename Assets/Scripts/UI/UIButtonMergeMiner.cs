@@ -14,7 +14,7 @@ public class UIButtonMergeMiner : MonoBehaviour
     private void OnEnable()
     {
         Scores.Instance.GoldAmountChanged += OnGoldAmountChanged;
-        Game.Instance.TwoOfAKindMinersIsAppear += OnTwoOfAKindMinersIsAppear;
+        Game.Instance.TwoOfAKindMinersAppeared += OnTwoOfAKindMinersAppeared;
         _button.onClick.AddListener(OnButtonClick);
         _text.text = _buttonText + "\n" + _price;
     }
@@ -22,7 +22,7 @@ public class UIButtonMergeMiner : MonoBehaviour
     private void OnDisable()
     {
         Scores.Instance.GoldAmountChanged -= OnGoldAmountChanged;
-        Game.Instance.TwoOfAKindMinersIsAppear -= OnTwoOfAKindMinersIsAppear;
+        Game.Instance.TwoOfAKindMinersAppeared -= OnTwoOfAKindMinersAppeared;
         _button.onClick.RemoveListener(OnButtonClick);
     }
 
@@ -33,7 +33,7 @@ public class UIButtonMergeMiner : MonoBehaviour
         _text.text = _buttonText + "\n" + _price;
     }
 
-    private void OnTwoOfAKindMinersIsAppear()
+    private void OnTwoOfAKindMinersAppeared()
     {
         if (Scores.Instance.Gold >= _price)
         {
@@ -47,7 +47,7 @@ public class UIButtonMergeMiner : MonoBehaviour
 
     private void OnGoldAmountChanged(int value)
     {
-        if (value >= _price && Game.Instance.IsTwoOfAKindMinersIsAppear() == true)
+        if (value >= _price && Game.Instance.IsTwoOfAKindMinersAppear() == true)
         {
             _button.interactable = true;
         }

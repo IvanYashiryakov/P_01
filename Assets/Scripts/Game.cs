@@ -14,7 +14,7 @@ public class Game : MonoBehaviour
 
     public static Game Instance;
 
-    [HideInInspector] public UnityAction TwoOfAKindMinersIsAppear;
+    [HideInInspector] public UnityAction TwoOfAKindMinersAppeared;
 
     private void Awake()
     {
@@ -43,11 +43,12 @@ public class Game : MonoBehaviour
         Miner miner = newMinerInstance.GetComponent<Miner>();
         miner.Init(_mine, _minerDatas[0]);
         miner.Destroyed += OnMinerDestroyed;
+        miner.MergeDone += OnMinerMerged;
         _miners.Add(miner);
 
-        if (IsTwoOfAKindMinersIsAppear() == true)
+        if (IsTwoOfAKindMinersAppear() == true)
         {
-            TwoOfAKindMinersIsAppear?.Invoke();
+            TwoOfAKindMinersAppeared?.Invoke();
         }
     }
 
@@ -69,7 +70,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    public bool IsTwoOfAKindMinersIsAppear()
+    public bool IsTwoOfAKindMinersAppear()
     {
         int maxLevel = _minerDatas.Length;
 
@@ -89,6 +90,15 @@ public class Game : MonoBehaviour
     private void OnMinerDestroyed(Miner miner)
     {
         miner.Destroyed -= OnMinerDestroyed;
+        miner.MergeDone -= OnMinerMerged;
         _miners.Remove(miner);
+    }
+
+    private void OnMinerMerged()
+    {
+        if (IsTwoOfAKindMinersAppear() == true)
+        {
+            TwoOfAKindMinersAppeared?.Invoke();
+        }
     }
 }

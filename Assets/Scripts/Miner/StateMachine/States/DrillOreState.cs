@@ -32,7 +32,7 @@ public class DrillOreState : State
         _rigidbody.velocity = -transform.forward * _speed;
 
         _elapsedTime += Time.deltaTime;
-        if (_onCollision && _elapsedTime > _effectTime)
+        if (_onCollision && _elapsedTime > _effectTime && Scores.Instance.Fuel > 0)
         {
             _destroyEffect.Play();
             _elapsedTime = 0f;
@@ -46,7 +46,9 @@ public class DrillOreState : State
             _onCollision = true;
 
             if (Scores.Instance.TryRemoveFuel(_miner.FuelUsage) == true)
+            {
                 orePiece.ApplyDamage(_miner.Damage);
+            }
         }
     }
 
