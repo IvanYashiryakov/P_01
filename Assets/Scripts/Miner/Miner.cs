@@ -3,8 +3,9 @@ using UnityEngine.Events;
 
 public class Miner : MonoBehaviour
 {
+    [SerializeField] private Transform _drill;
+    [SerializeField] private float _drillSpeed = 5f;
     [SerializeField] private Mine _mine;
-    [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private MinerData _minerData;
 
     private MinerData _nextLevelMinerData;
@@ -18,27 +19,29 @@ public class Miner : MonoBehaviour
     public Miner MinerToMergeWith => _minerToMergeWith;
 
     [HideInInspector] public UnityAction MergeStarted;
-    [HideInInspector] public UnityAction<Miner> Destroyed;
+    [HideInInspector] public UnityAction<Miner, MinerData> Destroyed;
     [HideInInspector] public UnityAction MergeDone;
 
     private void OnDestroy()
     {
-        Destroyed?.Invoke(this);
+        Destroyed?.Invoke(this, _nextLevelMinerData);
     }
 
     public void Init(Mine mine, MinerData minerData)
     {
         _mine = mine;
         _minerData = minerData;
-        _meshRenderer.material = _minerData.Material;
     }
 
     public void SetNextLevelMinerData()
     {
-        _minerData = _nextLevelMinerData;
-        _meshRenderer.material = _minerData.Material;
-        _nextLevelMinerData = null;
-        MergeDone?.Invoke();
+        //_minerData = _nextLevelMinerData;
+        //_meshRenderer.material = _minerData.Material;
+        //_nextLevelMinerData = null;
+        //_minerToMergeWith = null;
+        //gameObject.name = "Miner " + _minerData.Level;
+        //MergeDone?.Invoke();
+        Destroy(gameObject);
     }
 
     public void StartMerge(Miner minerToMergeWith, MinerData minerData = null)
@@ -46,5 +49,15 @@ public class Miner : MonoBehaviour
         _nextLevelMinerData = minerData;
         _minerToMergeWith = minerToMergeWith;
         MergeStarted?.Invoke();
+    }
+
+    public void RotateDrill(float deltaTime)
+    {
+        if (_drill == null)
+            return;
+
+        float currentRotationZ = _drill.transform.eulerAngles.z;
+        float newRotationZ = currentRotationZ + _drillSpeed * deltaTime;
+        _drill.transform.eulerAngles = new Vector3(_drill.transform.eulerAngles.x, _drill.transform.eulerAngles.y, newRotationZ);
     }
 }

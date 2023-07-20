@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbdf43b5392d9af4ab7e2c682d716ace, type: 3}
+  m_Name: Miner03_2
+  m_EditorClassIdentifier: 
+  Level: 5
+  Material: {fileID: 2100000, guid: f6a1b38526f8c394684181404522148f, type: 2}
+  Miner: {fileID: 6573330594513646511, guid: 43fb3ff2a4cee264a8aaa13d06ba19d6, type: 3}
+  Damage: 5.37
+  FuelUsage: 0.4

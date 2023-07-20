@@ -4,18 +4,14 @@ using UnityEngine.Events;
 public class OrePiece : MonoBehaviour
 {
     private float _health;
-    private int _goldAmount;
+    private float _goldAmount;
     private Ore _parent;
 
+    public float Health => _health;
     [HideInInspector] public UnityAction<OrePiece> Destroyed;
+    [HideInInspector] public UnityAction Damaged;
 
-    private void OnDestroy()
-    {
-        Destroyed?.Invoke(this);
-        Scores.Instance.AddGold(_goldAmount);
-    }
-
-    public void Init(Ore parent, float health, int gold)
+    public void Init(Ore parent, float health, float gold)
     {
         _parent = parent;
         _health = health;
@@ -28,8 +24,14 @@ public class OrePiece : MonoBehaviour
             return;
 
         _health -= damage;
+        Damaged?.Invoke();
 
-        if (_health < 0)
+        if (_health <= 0)
+        {
+            Scores.Instance.AddGold(_goldAmount);
+            ObjectPool.Instance.Spawn(_goldAmount, SpriteType.Gold, transform.position);
+            Destroyed?.Invoke(this);
             Destroy(gameObject);
+        }
     }
 }

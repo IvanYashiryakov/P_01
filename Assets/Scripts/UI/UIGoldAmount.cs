@@ -10,6 +10,7 @@ public class UIGoldAmount : MonoBehaviour
     private void OnEnable()
     {
         Scores.Instance.GoldAmountChanged += OnGoldAmountChanged;
+        OnGoldAmountChanged(Scores.Instance.Gold);
     }
 
     private void OnDisable()
@@ -17,8 +18,8 @@ public class UIGoldAmount : MonoBehaviour
         Scores.Instance.GoldAmountChanged -= OnGoldAmountChanged;
     }
 
-    private void OnGoldAmountChanged(int value)
+    private void OnGoldAmountChanged(float value)
     {
-        _text.text = value.ToString();
+        _text.text = ((int)value).ToString();
     }
 }

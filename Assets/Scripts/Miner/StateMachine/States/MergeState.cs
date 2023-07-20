@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Miner))]
@@ -16,7 +14,7 @@ public class MergeState : State
 
     private void Update()
     {
-        if (_miner.MinerToMergeWith != null)
+        if (_miner.NextLevelMinerData != null)
             transform.position = Vector3.MoveTowards(transform.position, _miner.MinerToMergeWith.transform.position, _speed * Time.deltaTime);
     }
 }

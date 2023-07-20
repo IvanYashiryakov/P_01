@@ -3,20 +3,26 @@ using UnityEngine.Events;
 
 public class Scores : MonoBehaviour
 {
-    [SerializeField] private int _gold;
+    [SerializeField] private float _gold;
     [SerializeField] private float _maxFuel;
     [SerializeField] private float _fuelBuyingRate;
     [SerializeField] private float _priceIncreaseRate;
+    [SerializeField] private int _startMinerPrice;
+    [SerializeField] private int _startMergePrice;
 
     private float _currentFuel;
 
     public static Scores Instance;
-    public int Gold => _gold;
+    public float Gold => _gold;
     public float Fuel => _currentFuel;
     public float PriceIncreaseRate => _priceIncreaseRate;
+    public bool IsFuelMax => _currentFuel >= _maxFuel;
+    public int StartMinerPrice => _startMinerPrice;
+    public int StartMergePrice => _startMergePrice;
 
-    [HideInInspector] public UnityAction<int> GoldAmountChanged;
+    [HideInInspector] public UnityAction<float> GoldAmountChanged;
     [HideInInspector] public UnityAction<float, float> FuelAmountChanged;
+    [HideInInspector] public UnityAction FuelIsEmpty;
 
     private void Awake()
     {
@@ -45,7 +51,7 @@ public class Scores : MonoBehaviour
 
         if (_currentFuel > _maxFuel)
             _currentFuel = _maxFuel;
-        Debug.Log("test");
+
         FuelAmountChanged?.Invoke(_currentFuel, _maxFuel);
     }
 
@@ -61,26 +67,37 @@ public class Scores : MonoBehaviour
 
         FuelAmountChanged?.Invoke(_currentFuel, _maxFuel);
 
+        if (_currentFuel == 0)
+            FuelIsEmpty?.Invoke();
+
         return true;
     }
 
-    public void AddGold(int value)
+    public void AddGold(float value)
     {
         _gold += value;
         GoldAmountChanged?.Invoke(_gold);
     }
 
-    public void RemoveGold(int value)
+    public bool RemoveGold(float value)
     {
         if (value <= _gold)
         {
             _gold -= value;
             GoldAmountChanged?.Invoke(_gold);
+            return true;
         }
+
+        return false;
     }
 
     public void ButtonBuyFuel()
     {
         AddFuel(_maxFuel * _fuelBuyingRate);
+    }
+
+    public void RefillFuel()
+    {
+        AddFuel(_maxFuel);
     }
 }

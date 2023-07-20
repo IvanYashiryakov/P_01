@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ToMergeTransition : Transition
@@ -15,6 +13,7 @@ public class ToMergeTransition : Transition
             if (Target != null)
             {
                 Target.SetBusy(false);
+                _stateMachine.ResetTarget();
             }
 
             //_stateMachine.MergeTransitDone();

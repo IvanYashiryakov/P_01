@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +8,9 @@ public class OreColoumn : MonoBehaviour
     
     private int _count;
     private List<Ore> _ores;
+    private float _offsetX;
+    private int _oreHealth = 0;
+    private float _oreGold = 0;
 
     [HideInInspector] public UnityAction<OreColoumn> Destroyed;
 
@@ -20,10 +22,11 @@ public class OreColoumn : MonoBehaviour
         {
             var ore = Instantiate(_orePrafab, transform);
             ore.name = transform.name + "| Ore " + i;
-            ore.transform.position = new Vector3(i, 0.5f, transform.position.z);
+            ore.transform.position = new Vector3(i + _offsetX, 0.5f, transform.position.z);
             _ores.Add(ore.GetComponent<Ore>());
 
             _ores[i].Destroyed += OnOreDestroyed;
+            _ores[i].Init(_oreHealth, _oreGold);
         }
     }
 
@@ -32,9 +35,12 @@ public class OreColoumn : MonoBehaviour
         Destroyed?.Invoke(this);
     }
 
-    public void Init(int count)
+    public void Init(int count, float offsetX, int oreHealth, float oreGold)
     {
         _count = count;
+        _offsetX = offsetX;
+        _oreHealth = oreHealth;
+        _oreGold = oreGold;
     }
 
     public Ore TryGetFreeOre()

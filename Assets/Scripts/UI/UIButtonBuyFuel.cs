@@ -30,9 +30,9 @@ public class UIButtonBuyFuel : MonoBehaviour
         _text.text = _buttonText + "\n" + _price;
     }
 
-    private void OnGoldAmountChanged(int value)
+    private void OnGoldAmountChanged(float value)
     {
-        if (value >= _price)
+        if (value >= _price && Scores.Instance.IsFuelMax == false)
         {
             _button.interactable = true;
         }

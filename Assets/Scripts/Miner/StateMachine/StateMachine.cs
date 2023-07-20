@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
@@ -46,6 +44,11 @@ public class StateMachine : MonoBehaviour
     public void SetTarget(Ore target)
     {
         _target = target;
+    }
+
+    public void ResetTarget()
+    {
+        _target = null;
     }
 
     public void MergeTransitDone()

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Mine : MonoBehaviour
 {
@@ -8,21 +9,9 @@ public class Mine : MonoBehaviour
     [SerializeField] private int _height;
 
     private List<OreColoumn> _oreColoumns;
+    private float _offsetX;
 
-    private void Start()
-    {
-        _oreColoumns = new List<OreColoumn>();
-
-        for (int i = 0; i < _width; i++)
-        {
-            var oreColoumn = Instantiate(_oreColoumnPrafab, transform);
-            oreColoumn.name = "OC " + i;
-            oreColoumn.transform.position = new Vector3(0, 0.5f, -i);
-            _oreColoumns.Add(oreColoumn.GetComponent<OreColoumn>());
-            _oreColoumns[i].Destroyed += OnOreColoumnDestroyed;
-            _oreColoumns[i].Init(_height);
-        }
-    }
+    [HideInInspector] public UnityAction Finished;
 
     public Ore TryGetFreeOre()
     {
@@ -48,5 +37,25 @@ public class Mine : MonoBehaviour
     {
         oreColoumn.Destroyed -= OnOreColoumnDestroyed;
         _oreColoumns.Remove(oreColoumn);
+
+        if (_oreColoumns.Count == 0)
+            Finished?.Invoke();
+    }
+
+    public void CreateLevel(Level level)
+    {
+        Scores.Instance.RefillFuel();
+        _oreColoumns = new List<OreColoumn>();
+        _offsetX = (5f - level.Width) / 2f;
+
+        for (int i = 0; i < level.Height; i++)
+        {
+            var oreColoumn = Instantiate(_oreColoumnPrafab, transform);
+            oreColoumn.name = "OC " + i;
+            oreColoumn.transform.position = new Vector3(_offsetX, 0.5f, -i);
+            _oreColoumns.Add(oreColoumn.GetComponent<OreColoumn>());
+            _oreColoumns[i].Destroyed += OnOreColoumnDestroyed;
+            _oreColoumns[i].Init(level.Width, _offsetX, level.OreHealth, level.OreGold);
+        }
     }
 }
