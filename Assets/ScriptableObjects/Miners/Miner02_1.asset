@@ -17,3 +17,4 @@ MonoBehaviour:
   Miner: {fileID: 2590925125132434539, guid: a25d05cd3800fac4f9248b06916f1e3f, type: 3}
   Damage: 1.96
   FuelUsage: 0.35
+  Multiplier: 0.96

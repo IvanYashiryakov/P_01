@@ -8,4 +8,5 @@ public class MinerData : ScriptableObject
     public Miner Miner;
     public float Damage;
     public float FuelUsage;
+    public float Multiplier;
 }

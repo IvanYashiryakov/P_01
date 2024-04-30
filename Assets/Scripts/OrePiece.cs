@@ -18,7 +18,7 @@ public class OrePiece : MonoBehaviour
         _goldAmount = gold;
     }
 
-    public void ApplyDamage(float damage)
+    public void ApplyDamage(float damage, float multiplier)
     {
         if (_parent.IsFree == true)
             return;
@@ -28,8 +28,11 @@ public class OrePiece : MonoBehaviour
 
         if (_health <= 0)
         {
-            Scores.Instance.AddGold(_goldAmount);
-            ObjectPool.Instance.Spawn(_goldAmount, SpriteType.Gold, transform.position);
+            float totalGold = _goldAmount + _goldAmount * multiplier;
+            _health = 0;
+            Scores.Instance.AddGold(totalGold);
+            ObjectPool.Instance.Spawn(totalGold, SpriteType.Gold, transform.position);
+            SoundManager.Instance.PlayCoin();
             Destroyed?.Invoke(this);
             Destroy(gameObject);
         }

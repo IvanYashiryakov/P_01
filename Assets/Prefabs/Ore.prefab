@@ -1130,7 +1130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 50
-  _goldAmount: 10
   _orePieces:
   - {fileID: 3303514653794473347}
   - {fileID: 8703978900794165675}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
@@ -7,6 +8,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] private Miner _miner;
     [SerializeField] private Ore _target;
 
+    private float _startDelay = 0.33f;
     private bool _needMerge;
 
     public State Current => _currentState;
@@ -23,8 +25,9 @@ public class StateMachine : MonoBehaviour
         _miner.MergeStarted -= OnMerge;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(_startDelay);
         Reset(_firstState);
     }
 

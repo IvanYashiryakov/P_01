@@ -44,7 +44,7 @@ public class DrillOreState : State
 
             if (Scores.Instance.TryRemoveFuel(_miner.FuelUsage) == true)
             {
-                orePiece.ApplyDamage(_miner.Damage);
+                orePiece.ApplyDamage(_miner.Damage, _miner.Multiplier);
 
                 SoundManager.Instance.PlayDrillSound();
                 //if (_audioSource.isPlaying == false)

@@ -10,10 +10,11 @@ public class Game : MonoBehaviour
     [SerializeField] private MinerData[] _minerDatas;
     [SerializeField] private GameObject _finishPanel;
     [SerializeField] private GameObject _gamePanel;
+    [SerializeField] private CameraBorder _cameraBorder;
+    [SerializeField] private Transform _spawnPoint;
 
     private List<Miner> _miners;
     private int _currentLevel = 0;
-    private Vector3 _startPosition = new Vector3(0, 0.5f, 3.06f);
 
     public static Game Instance;
 
@@ -47,6 +48,7 @@ public class Game : MonoBehaviour
     private void Start()
     {
         _miners = new List<Miner>();
+        CreateCurrentLevel();
     }
 
     public void OnButtonContinue()
@@ -57,20 +59,13 @@ public class Game : MonoBehaviour
 
     public void CreateCurrentLevel()
     {
+        _cameraBorder.ResetPosition();
         _mine.CreateLevel(_levels[_currentLevel]);
     }
 
     public void OnButtonCreateMiner()
     {
-        //var newMinerInstance = Instantiate(_minerPrefab);
-        //Miner miner = Instantiate(_minerDatas[0].Miner);
-        //miner.name = "Miner " + _minerDatas[0].Level;
-        //miner.Init(_mine, _minerDatas[0]);
-        //miner.Destroyed += OnMinerDestroyed;
-        //miner.MergeDone += OnMinerMerged;
-        //_miners.Add(miner);
-
-        CreateMiner(_minerDatas[0], _startPosition);
+        CreateMiner(_minerDatas[0], _spawnPoint.position);
 
         if (IsTwoOfAKindMinersAppear() == true)
         {
@@ -91,7 +86,6 @@ public class Game : MonoBehaviour
 
     public void OnButtonMergeMiners()
     {
-        Debug.Log("test");
         int maxLevel = _minerDatas.Length;
 
         for (int i = 0; i < maxLevel - 1; i++)
@@ -140,7 +134,6 @@ public class Game : MonoBehaviour
 
     private void OnMinerMerged()
     {
-        Debug.Log("merged");
         if (IsTwoOfAKindMinersAppear() == true)
         {
             TwoOfAKindMinersAppeared?.Invoke();

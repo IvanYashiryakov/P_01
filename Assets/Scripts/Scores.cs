@@ -39,6 +39,9 @@ public class Scores : MonoBehaviour
 
     private void Start()
     {
+        _maxFuel = SaveManager.Instance.MaxFuel != -1 ? SaveManager.Instance.MaxFuel : _maxFuel;
+        _gold = SaveManager.Instance.Gold != -1 ? SaveManager.Instance.Gold : _gold;
+
         _currentFuel = _maxFuel;
 
         GoldAmountChanged?.Invoke(_gold);

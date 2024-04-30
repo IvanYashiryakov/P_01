@@ -1,21 +1,25 @@
+using System.Collections;
 using UnityEngine;
+using YG;
 
 public class YandexInit : MonoBehaviour
 {
     [SerializeField] private GameObject[] _toActivate;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        //while (YandexGame.SDKEnabled == false)
-        //{
-        //    yield return null;
-        //}
+        while (YandexGame.SDKEnabled == false)
+        {
+            yield return null;
+        }
 
-        //YandexGame.LoadProgress();
+        YandexGame.savesData.LoadSaveToPrefs();
+
         foreach (var item in _toActivate)
         {
             item.SetActive(true);
         }
-        Game.Instance.CreateCurrentLevel();
+
+        //Game.Instance.CreateCurrentLevel();
     }
 }

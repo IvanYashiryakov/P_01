@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 4644938268681368358}
   - component: {fileID: 4173663622235884496}
   - component: {fileID: 54417928403496479}
+  - component: {fileID: 6979452581328174189}
   m_Layer: 6
   m_Name: Miner_05_2
   m_TagString: Untagged
@@ -257,7 +258,6 @@ MonoBehaviour:
   _speed: 7
   _rigidbody: {fileID: 6284454995541676392}
   _destroyEffect: {fileID: 8422779288851843204}
-  _audioSource: {fileID: 0}
 --- !u!114 &1703000772740854784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +345,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 2605095289333789599}
   _stateMachine: {fileID: 3983277877608777260}
+--- !u!111 &6979452581328174189
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537857425518372110}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 664b9fb434227244ebc5bab55a972e8e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 664b9fb434227244ebc5bab55a972e8e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3293767675389978855
 GameObject:
   m_ObjectHideFlags: 0
